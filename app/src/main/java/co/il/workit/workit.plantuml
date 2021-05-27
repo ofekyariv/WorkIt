@@ -1,0 +1,232 @@
+@startuml
+
+title __WORKIT's Class Diagram__\n
+
+  namespace co.il.workit {
+    class co.il.workit.ListActivity {
+        - adapter : ArrayAdapter<String>
+        - listView : ListView
+        - names : ArrayList<String>
+        + onItemClick()
+        + onItemLongClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.MainActivity {
+        ~ btnCS : Button
+        ~ btnMS : Button
+        ~ btnWI : Button
+        ~ cmTimer : Chronometer
+        ~ elapsedTime : long
+        ~ hours : int
+        ~ minutes : int
+        ~ phoneNo : String
+        ~ resume : Boolean
+        ~ seconds : int
+        ~ sfShift : TextView
+        ~ swSFS : SwitchCompat
+        {static} - MY_PERMISSIONS_REQUEST_CALL_PHONE : int
+        {static} - MY_PERMISSIONS_REQUEST_SEND_SMS : int
+        - enableCall : boolean
+        - enableSms : boolean
+        {static} - iCallMessageReceiver : ICallMessageReceiver
+        - intentFilter : IntentFilter
+        + onClick()
+        + onCreateOptionsMenu()
+        + onOptionsItemSelected()
+        + onRequestPermissionsResult()
+        + sendCallMessage()
+        # onCreate()
+        # onDestroy()
+        # onResume()
+        - checkForPermission()
+        - onCheckedChanged()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.MonthlySumUp {
+        ~ btnCS : Button
+        ~ btnMS : Button
+        ~ btnWI : Button
+        - listView : ListView
+        - shift_list : ArrayList<Shift>
+        + onClick()
+        + onItemLongClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.Over_Time_Hours {
+        ~ btnCS : Button
+        ~ btnMS : Button
+        ~ btnSave : Button
+        ~ btnWI : Button
+        ~ et4H : EditText
+        ~ tvDisplay : TextView
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.PhoneCallReceiver {
+        {static} - MY_PERMISSIONS_REQUEST_SEND_SMS : int
+        {static} - iCallMessageReceiver : ICallMessageReceiver
+        + onReceive()
+        + registerCallback()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    interface co.il.workit.PhoneCallReceiver.ICallMessageReceiver {
+        {abstract} + sendCallMessage()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.Salary {
+        ~ btnCS : Button
+        ~ btnMS : Button
+        ~ btnSave : Button
+        ~ btnWI : Button
+        ~ et4H : EditText
+        ~ tvDisplay : TextView
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.Shift {
+        - date : Date
+        - id : long
+        - time : long
+        + Shift()
+        + Shift()
+        + compareTo()
+        + getDate()
+        + getId()
+        + getTime()
+        + getTxtTime()
+        + setDate()
+        + setId()
+        + setTime()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.ShiftAdapter {
+        + ShiftAdapter()
+        + getView()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.ShiftDataBase {
+        {static} - COLUMN_DATE : String
+        {static} - COLUMN_ID : String
+        {static} - COLUMN_TIME : String
+        {static} - CREATE_TABLE_CUSTOMER : String
+        {static} - DATABASENAME : String
+        {static} - DATABASEVERSION : int
+        {static} - TABLE_RECORD : String
+        {static} - allColumns : String[]
+        - database : SQLiteDatabase
+        {static} - shifts : ArrayList<Shift>
+        + ShiftDataBase()
+        + createRecord()
+        + deletePlayerByRow()
+        {static} + getShifts()
+        + onCreate()
+        + onUpgrade()
+        + setRecord()
+        + updateByRow()
+        - getAllRecords()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.SplashScreen {
+        # onCreate()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.Travel_Ex {
+        ~ btnCS : Button
+        ~ btnMS : Button
+        ~ btnSave : Button
+        ~ btnWI : Button
+        ~ et4S : EditText
+        ~ tvDisplay : TextView
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace co.il.workit {
+    class co.il.workit.WorkInformation {
+        ~ btnCS : Button
+        ~ btnMS : Button
+        ~ btnSD : Button
+        ~ btnSY : Button
+        ~ btnTE : Button
+        ~ btnWI : Button
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  co.il.workit.ListActivity .up.|> android.widget.AdapterView.OnItemClickListener
+  co.il.workit.ListActivity .up.|> android.widget.AdapterView.OnItemLongClickListener
+  co.il.workit.ListActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  co.il.workit.MainActivity .up.|> android.view.View.OnClickListener
+  co.il.workit.MainActivity .up.|> co.il.workit.PhoneCallReceiver.ICallMessageReceiver
+  co.il.workit.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  co.il.workit.MainActivity o-- co.il.workit.PhoneCallReceiver : callReceiver
+  co.il.workit.MonthlySumUp .up.|> android.view.View.OnClickListener
+  co.il.workit.MonthlySumUp .up.|> android.widget.AdapterView.OnItemLongClickListener
+  co.il.workit.MonthlySumUp -up-|> androidx.appcompat.app.AppCompatActivity
+  co.il.workit.MonthlySumUp o-- co.il.workit.ShiftAdapter : adapter
+  co.il.workit.MonthlySumUp o-- co.il.workit.ShiftDataBase : shiftDataBase
+  co.il.workit.Over_Time_Hours .up.|> android.view.View.OnClickListener
+  co.il.workit.Over_Time_Hours -up-|> androidx.appcompat.app.AppCompatActivity
+  co.il.workit.PhoneCallReceiver -up-|> android.content.BroadcastReceiver
+  co.il.workit.PhoneCallReceiver +-down- co.il.workit.PhoneCallReceiver.ICallMessageReceiver
+  co.il.workit.Salary .up.|> android.view.View.OnClickListener
+  co.il.workit.Salary -up-|> androidx.appcompat.app.AppCompatActivity
+  co.il.workit.Shift .up.|> java.lang.Comparable
+  co.il.workit.ShiftAdapter -up-|> android.widget.ArrayAdapter
+  co.il.workit.ShiftDataBase -up-|> android.database.sqlite.SQLiteOpenHelper
+  co.il.workit.SplashScreen -up-|> androidx.appcompat.app.AppCompatActivity
+  co.il.workit.Travel_Ex .up.|> android.view.View.OnClickListener
+  co.il.workit.Travel_Ex -up-|> androidx.appcompat.app.AppCompatActivity
+  co.il.workit.WorkInformation .up.|> android.view.View.OnClickListener
+  co.il.workit.WorkInformation -up-|> androidx.appcompat.app.AppCompatActivity
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
