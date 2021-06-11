@@ -95,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     minutes = (int) ((((SystemClock.elapsedRealtime() - cmTimer.getBase())/1000) / 60) - hours*60);
                     seconds = (int) (((SystemClock.elapsedRealtime() - cmTimer.getBase())/1000) % 60);
                     elapsedTime = elapsedTime + 1000;
-
-
                 }
             }
         });
@@ -160,13 +158,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case MY_PERMISSIONS_REQUEST_SEND_SMS: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(), "SMS sent.",
+                    Toast.makeText(getApplicationContext(), "Permission granted",
                             Toast.LENGTH_LONG).show();
                     enableSms = true;
 
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+                            "Permission failed, please try again.", Toast.LENGTH_LONG).show();
                     enableSms = false;
                     return;
                 }
@@ -228,7 +226,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             shiftDataBase.setRecord(Shift);
                         }
                         break;
-
                 }
             }
         };

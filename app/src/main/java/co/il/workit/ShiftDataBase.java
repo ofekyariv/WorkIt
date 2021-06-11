@@ -110,7 +110,7 @@ public class ShiftDataBase extends SQLiteOpenHelper {
         return Shifts;
     }
 
-    public void deletePlayerByRow(long id) {
+    public void deleteShiftByRow(long id) {
         database = getWritableDatabase(); // get access to write the data
         database.delete(TABLE_RECORD, COLUMN_ID + " = " + id, null);
         getAllRecords();

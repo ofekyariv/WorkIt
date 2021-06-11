@@ -80,7 +80,7 @@ public class MonthlySumUp extends AppCompatActivity implements View.OnClickListe
         alert.setPositiveButton("delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
-                shiftDataBase.deletePlayerByRow(Shift_list.get(position).getId());
+                shiftDataBase.deleteShiftByRow(Shift_list.get(position).getId());
                 //ShiftDataBase.getShifts().remove(position);
                 adapter.notifyDataSetChanged();
                 startActivity(new Intent(MonthlySumUp.this,MonthlySumUp.class));
